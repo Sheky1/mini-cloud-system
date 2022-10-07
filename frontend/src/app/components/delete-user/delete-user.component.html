@@ -1,0 +1,21 @@
+<div class="home-main">
+  <form [formGroup]="deleteUserForm" (submit)="deleteUser()" class="my-3">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        placeholder="id"
+        [formControlName]="'id'"
+      />
+    </div>
+
+    <button
+      [disabled]="!deleteUserForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -1,0 +1,131 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Machine name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Actions</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let machine of this.machines; let i = index">
+      <th scope="row">{{ machine.id }}</th>
+      <td>{{ machine.name }}</td>
+      <td>{{ machine.status }}</td>
+      <td>{{ machine.user.firstName }} {{ machine.user.lastName }}</td>
+      <td>
+        <button
+          *ngIf="hasPermission('can_start_machines', 'start', i)"
+          class="btn btn-outline-primary"
+          (click)="updateStatus(i, machine.id, 'start', '')"
+        >
+          Start
+        </button>
+        <button
+          *ngIf="hasPermission('can_stop_machines', 'stop', i)"
+          class="btn btn-outline-danger"
+          (click)="updateStatus(i, machine.id, 'stop', '')"
+        >
+          Stop
+        </button>
+        <button
+          *ngIf="hasPermission('can_restart_machines', 'restart', i)"
+          class="btn btn-outline-secondary"
+          (click)="updateStatus(i, machine.id, 'restart', 'first')"
+        >
+          Restart
+        </button>
+        <span *ngIf="this.activeRequsts[i]" style="margin-left: 20px"
+          >Processing...</span
+        >
+      </td>
+      <td
+        *ngIf="this.machines[i].status == 'RUNNING'"
+        style="background-color: rgb(103, 236, 103); width: 200px"
+      ></td>
+      <td
+        *ngIf="this.machines[i].status == 'STOPPED'"
+        style="background-color: rgb(241, 4, 4); width: 200px"
+      ></td>
+    </tr>
+  </tbody>
+</table>
+
+<form
+  [formGroup]="scheduleForm"
+  (submit)="schedule()"
+  class="my-3"
+  *ngIf="hasAnyPermissionAuth()"
+>
+  <div class="col-xs-12 col-12 col-md-4 form-group">
+    <input
+      type="text"
+      class="form-control"
+      #dp="bsDatepicker"
+      bsDatepicker
+      placeholder="Date"
+      [formControlName]="'date'"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      class="form-control"
+      [ngxTimepicker]="picker"
+      [formControlName]="'time'"
+      placeholder="Time"
+    />
+    <ngx-material-timepicker #picker></ngx-material-timepicker>
+  </div>
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="id"
+      placeholder="id"
+      [formControlName]="'id'"
+    />
+  </div>
+
+  <div class="form-check" *ngIf="hasPermissionAuth('can_start_machines')">
+    <input
+      class="form-check-input"
+      type="radio"
+      id="start"
+      value="start"
+      [formControlName]="'actionGroup'"
+      checked
+    />
+    <label class="form-check-label" for="start"> Start </label>
+  </div>
+  <div class="form-check" *ngIf="hasPermissionAuth('can_stop_machines')">
+    <input
+      class="form-check-input"
+      type="radio"
+      id="stop"
+      value="stop"
+      [formControlName]="'actionGroup'"
+    />
+    <label class="form-check-label" for="stop"> Stop </label>
+  </div>
+  <div class="form-check" *ngIf="hasPermissionAuth('can_restart_machines')">
+    <input
+      class="form-check-input"
+      type="radio"
+      id="restart"
+      value="restart"
+      [formControlName]="'actionGroup'"
+    />
+    <label class="form-check-label" for="restart"> Restart </label>
+  </div>
+
+  <button
+    [disabled]="!scheduleForm.valid"
+    type="submit"
+    class="btn btn-primary mt-3"
+  >
+    Submit
+  </button>
+</form>

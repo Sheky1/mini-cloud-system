@@ -1,0 +1,33 @@
+<div class="home-main">
+  <div *ngIf="isUserLogged(); else elseBlock">
+    <form [formGroup]="loginForm" (submit)="login()" class="my-3">
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          [formControlName]="'email'"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          [formControlName]="'password'"
+        />
+      </div>
+
+      <button
+        [disabled]="!loginForm.valid"
+        type="submit"
+        class="btn btn-primary mt-3"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  <ng-template #elseBlock>You are logged in!</ng-template>
+</div>

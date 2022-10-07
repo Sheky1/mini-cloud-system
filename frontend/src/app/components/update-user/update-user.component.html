@@ -1,0 +1,176 @@
+<div class="home-main">
+  <form [formGroup]="updateUserForm" (submit)="updateUser()" class="my-3">
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        placeholder="id"
+        [formControlName]="'id'"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder="FirstName"
+        [formControlName]="'firstName'"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        placeholder="LastName"
+        [formControlName]="'lastName'"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        [formControlName]="'email'"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="password"
+        placeholder="Password"
+        [formControlName]="'password'"
+      />
+    </div>
+    <p>Permissions:</p>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_read_users"
+        id="can_read_users"
+        [formControlName]="'can_read_users'"
+      />
+      <label class="form-check-label" for="can_read_users"> Read users </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_create_users"
+        id="can_create_users"
+        [formControlName]="'can_create_users'"
+      />
+      <label class="form-check-label" for="can_create_users">
+        Create users
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_update_users"
+        id="can_update_users"
+        [formControlName]="'can_update_users'"
+      />
+      <label class="form-check-label" for="can_update_users">
+        Update users
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_delete_users"
+        id="can_delete_users"
+        [formControlName]="'can_delete_users'"
+      />
+      <label class="form-check-label" for="can_delete_users">
+        Delete users
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_search_machines"
+        id="can_search_machines"
+        [formControlName]="'can_search_machines'"
+      />
+      <label class="form-check-label" for="can_search_machines">
+        Search machines
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_start_machines"
+        id="can_start_machines"
+        [formControlName]="'can_start_machines'"
+      />
+      <label class="form-check-label" for="can_start_machines">
+        Start machines
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_stop_machines"
+        id="can_stop_machines"
+        [formControlName]="'can_stop_machines'"
+      />
+      <label class="form-check-label" for="can_stop_machines">
+        Stop machines
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_restart_machines"
+        id="can_restart_machines"
+        [formControlName]="'can_restart_machines'"
+      />
+      <label class="form-check-label" for="can_restart_machines">
+        Restart machines
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_create_machines"
+        id="can_create_machines"
+        [formControlName]="'can_create_machines'"
+      />
+      <label class="form-check-label" for="can_create_machines">
+        Create machines
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="can_destroy_machines"
+        id="can_destroy_machines"
+        [formControlName]="'can_destroy_machines'"
+      />
+      <label class="form-check-label" for="can_destroy_machines">
+        Destroy machines
+      </label>
+    </div>
+
+    <button
+      [disabled]="!updateUserForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+</div>

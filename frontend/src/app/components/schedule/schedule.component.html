@@ -1,0 +1,22 @@
+<div class="home-main">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No.</th>
+        <th scope="col">Machine id</th>
+        <th scope="col">Action</th>
+        <th scope="col">Message</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let errorMessage of this.formattedMessages; let i = index">
+        <th scope="row">{{ errorMessage.id }}</th>
+        <td>{{ errorMessage.machineId }}</td>
+        <td>{{ errorMessage.action }}</td>
+        <td>{{ errorMessage.message }}</td>
+        <td>{{ errorMessage.dateString }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

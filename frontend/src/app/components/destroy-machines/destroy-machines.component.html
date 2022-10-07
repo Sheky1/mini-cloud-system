@@ -1,0 +1,25 @@
+<div class="home-main">
+  <form
+    [formGroup]="destroyMachineForm"
+    (submit)="destroyMachine()"
+    class="my-3"
+  >
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        id="id"
+        placeholder="id"
+        [formControlName]="'id'"
+      />
+    </div>
+
+    <button
+      [disabled]="!destroyMachineForm.valid"
+      type="submit"
+      class="btn btn-primary mt-3"
+    >
+      Submit
+    </button>
+  </form>
+</div>
